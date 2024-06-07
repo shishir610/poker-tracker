@@ -16,7 +16,7 @@ export default function HomePage() {
                 <SubHeading title={"Join a room"} />
                 <div className="flex w-full max-w-sm items-center space-x-2">
                     <Input
-                        type="email"
+                        type="text"
                         className="border border-black"
                         placeholder="Room ID"
                     />

@@ -4,6 +4,7 @@ import AdminPage from "./AdminPage"
 import PlayerPage from "./PlayerPage"
 import PageWrapper from "../PageWrapper"
 import AdminProvider from "@/src/store/providers/AdminProvider"
+import PlayerProvider from "@/src/store/providers/PlayerProvider"
 
 export default function RoomPage() {
     const { state } = useRoomContext()
@@ -14,7 +15,9 @@ export default function RoomPage() {
                     <AdminPage />
                 </AdminProvider>
             ) : (
-                <PlayerPage />
+                <PlayerProvider>
+                    <PlayerPage />
+                </PlayerProvider>
             )}
         </PageWrapper>
     )

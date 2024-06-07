@@ -18,7 +18,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/room">
-                    <Route path=":id" element={<RoomPage />} />
+                    <Route path=":roomId" element={<RoomPage />} />
                 </Route>
             </Routes>
         </RoomProvider>

@@ -3,6 +3,7 @@ import AdminReducer from "../reducers/AdminReducer"
 import AdminContext from "../context/AdminContext"
 
 const initialState = {
+    hasGameStarted: false,
     players: [],
 }
 

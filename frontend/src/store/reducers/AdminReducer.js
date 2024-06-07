@@ -3,7 +3,7 @@ const AdminReducer = (state, { type, payload }) => {
         case "ADD_PLAYER":
             return {
                 ...state,
-                players: [...state.players, payload],
+                players: [...state.players, { ...payload, amount: 500 }],
             }
         default:
             return state

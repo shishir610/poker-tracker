@@ -10,7 +10,7 @@ export default function CreateRoomButton() {
 
     const createRoomEvent = (roomId) => {
         console.log(roomId)
-        dispatch({ type: "CREATE_ROOM", payload: { roomId: roomId } })
+        dispatch({ type: "CREATE_ROOM", payload: { roomId } })
         navigate(`/room/${roomId}`)
     }
 

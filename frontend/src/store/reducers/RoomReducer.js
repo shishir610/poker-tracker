@@ -6,6 +6,11 @@ const RoomReducer = (state, { type, payload }) => {
                 isHost: true,
                 roomId: payload.roomId,
             }
+        case "START_GAME":
+            return {
+                ...state,
+                hasGameStarted: true,
+            }
         default:
             return state
     }

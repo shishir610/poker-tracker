@@ -5,6 +5,7 @@ import RoomContext from "../context/RoomContext"
 const initialState = {
     roomId: null,
     isHost: false,
+    hasGameStarted: false,
 }
 
 const RoomProvider = ({ children }) => {
