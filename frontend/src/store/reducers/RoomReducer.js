@@ -1,19 +1,21 @@
-const RoomReducer = (state, { type, payload }) => {
-    switch (type) {
-        case "CREATE_ROOM":
-            return {
-                ...state,
-                isHost: true,
-                roomId: payload.roomId,
-            }
-        case "START_GAME":
-            return {
-                ...state,
-                hasGameStarted: true,
-            }
-        default:
-            return state
-    }
-}
+import RoomActions from "../actions/AdminActions";
 
-export default RoomReducer
+const RoomReducer = (state, { type, payload }) => {
+	switch (type) {
+		case RoomActions.CREATE_ROOM:
+			return {
+				...state,
+				isHost: true,
+				roomId: payload.roomId,
+			};
+		case RoomActions.START_GAME:
+			return {
+				...state,
+				hasGameStarted: true,
+			};
+		default:
+			return state;
+	}
+};
+
+export default RoomReducer;

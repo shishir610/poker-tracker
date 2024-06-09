@@ -1,13 +1,15 @@
-const PlayerReducer = (state, { type, payload }) => {
-    switch (type) {
-        case "SET_NICKNAME":
-            return {
-                ...state,
-                nickname: payload.nickname,
-            }
-        default:
-            return state
-    }
-}
+import PlayerActions from "../actions/PlayerActions";
 
-export default PlayerReducer
+const PlayerReducer = (state, { type, payload }) => {
+	switch (type) {
+		case PlayerActions.SET_NICKNAME:
+			return {
+				...state,
+				nickname: payload.nickname,
+			};
+		default:
+			return state;
+	}
+};
+
+export default PlayerReducer;

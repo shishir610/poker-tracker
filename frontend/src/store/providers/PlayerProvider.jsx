@@ -1,19 +1,25 @@
-import { useReducer } from "react"
-import PlayerReducer from "../reducers/PlayerReducer"
-import PlayerContext from "../context/PlayerContext"
+import { useReducer } from "react";
+import PlayerReducer from "../reducers/PlayerReducer";
+import PropTypes from "prop-types";
+import PlayerContext from "../context/PlayerContext";
 
 const initialState = {
-    nickname: "",
-}
+	nickname: "",
+};
 
 const PlayerProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(PlayerReducer, initialState)
+	const [state, dispatch] = useReducer(PlayerReducer, initialState);
 
-    return (
-        <PlayerContext.Provider value={{ state, dispatch }}>
-            {children}
-        </PlayerContext.Provider>
-    )
-}
+	return (
+		<PlayerContext.Provider value={{ state, dispatch }}>
+			{children}
+		</PlayerContext.Provider>
+	);
+};
 
-export default PlayerProvider
+// Define the expected type for children
+PlayerProvider.propTypes = {
+	children: PropTypes.node.isRequired,
+};
+
+export default PlayerProvider;

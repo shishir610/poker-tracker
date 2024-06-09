@@ -1,22 +1,34 @@
-import React from "react"
-import { useNavigate } from "react-router-dom"
-import useRoomContext from "../store/hooks/useRoomContext"
-import { socket } from "../services/socket"
-import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom";
+import { socket } from "../services/socket";
+import { Button } from "@/components/ui/button";
+import { RoomActions } from "../store/reducers/RoomReducer";
+import { SocketActions } from "../services/socket";
+import RoomContext from "../store/context/RoomContext";
+import useActorContext from "../store/hooks/useActorContext";
 
 export default function CreateRoomButton() {
-    const navigate = useNavigate()
-    const { dispatch } = useRoomContext()
+	// Navigate Hook for React Router.
+	const navigate = useNavigate();
+	// useActorContext Hook for accessing the RoomContext.
+	const { dispatch } = useActorContext(RoomContext);
 
-    const createRoomEvent = (roomId) => {
-        console.log(roomId)
-        dispatch({ type: "CREATE_ROOM", payload: { roomId } })
-        navigate(`/room/${roomId}`)
-    }
+	// Create Room Event. Call the dispatch function with the CREATE_ROOM action type and the roomId as payload.
+	const createRoomEvent = (roomId) => {
+		console.log(roomId);
+		dispatch({
+			type: RoomActions.CREATE_ROOM,
+			payload: {
+				roomId,
+			},
+		});
+		// TODO: Fix does not set Host as player in the room.
+		navigate(`/room/${roomId}`);
+	};
 
-    const handleCreateRoom = () => {
-        socket.emit("create-room", createRoomEvent)
-    }
+	// Handle Create Room. Emit the CREATE_ROOM event with the createRoomEvent as the callback.
+	const handleCreateRoom = () => {
+		socket.emit(SocketActions.CREATE_ROOM, createRoomEvent);
+	};
 
-    return <Button onClick={handleCreateRoom}>Create Room</Button>
+	return <Button onClick={handleCreateRoom}>Create Room</Button>;
 }
