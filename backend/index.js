@@ -1,39 +1,44 @@
-const ShortUniqueId = require("short-unique-id")
+import { ShortUniqueId } from "short-unique-id";
+import { Server } from "socket.io";
+import SocketActions from "../SocketActions";
 
-const { randomUUID } = new ShortUniqueId({ length: 10 })
+// UUID Generator.
+const { randomUUID } = new ShortUniqueId({ length: 10 });
 
-let hostSocketId
-let socketIdNicknameMap = {}
-let playerSocketIds = []
-let roundNumber = 0
+let hostSocketId;
+let socketIdNicknameMap = {};
+let playerSocketIds = [];
+let roundNumber = 0;
 
-const io = require("socket.io")(3000, {
-    cors: {
-        origin: ["http://localhost:5173"],
-    },
-})
+const io = Server(3000, {
+	cors: {
+		origin: ["http://localhost:5173"],
+	},
+});
 
-console.log("Serving running on port 3000")
+console.log("Serving running on port 3000");
 
-io.on("connection", (socket) => {
-    console.log(socket.id)
+io.on(SocketActions.CONNECTION, (socket) => {
+	console.log(socket.id);
 
-    socket.on("create-room", (cb) => {
-        const roomId = randomUUID()
-        hostSocketId = socket.id
-        socket.join(roomId)
-        cb(roomId)
-    })
+	socket.on(SocketActions.CREATE_ROOM, (cb) => {
+		const roomId = randomUUID();
+		hostSocketId = socket.id;
+		socket.join(roomId);
+		cb(roomId);
+	});
 
-    socket.on("join-room", (roomId, nickname, cb) => {
-        socket.join(roomId)
-        socketIdNicknameMap[socket.id] = nickname
-        playerSocketIds.push(socket.id)
-        io.to(hostSocketId).emit("add-player", { nickname })
-        cb()
-    })
+	socket.on(SocketActions.JOIN_ROOM, (roomId, nickname, cb) => {
+		socket.join(roomId);
+		socketIdNicknameMap[socket.id] = nickname;
+		playerSocketIds.push(socket.id);
+		io.to(hostSocketId).emit(SocketActions.ADD_PLAYER, {
+			nickname,
+		});
+		cb();
+	});
 
-    socket.on("start-game", () => {
-        socket.broadcast.emit("start-game")
-    })
-})
+	socket.on(SocketActions.START_GAME, () => {
+		socket.broadcast.emit(SocketActions.START_GAME);
+	});
+});

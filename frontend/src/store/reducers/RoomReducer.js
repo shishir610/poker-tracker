@@ -1,4 +1,4 @@
-import RoomActions from "../actions/AdminActions";
+import RoomActions from "../actions/RoomActions";
 
 const RoomReducer = (state, { type, payload }) => {
 	switch (type) {

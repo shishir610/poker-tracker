@@ -4,13 +4,14 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RoomProvider from "./store/providers/RoomProvider";
 import RoomPage from "./pages/Room/RoomPage";
+import SocketActions from "../../SocketActions";
 
 function App() {
 	// Connects on the first render and disconnects on unmount.
 	useEffect(() => {
-		socket.on("connect", () => console.log(socket.id));
+		socket.on(SocketActions.CONNECT, () => console.log(socket.id));
 		return () => {
-			socket.off("connect", () => console.log(socket.id));
+			socket.off(SocketActions.CONNECT, () => console.log(socket.id));
 		};
 	}, []);
 

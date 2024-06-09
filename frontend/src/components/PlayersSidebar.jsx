@@ -7,7 +7,7 @@ import { socket } from "../services/socket";
 import PropTypes from "prop-types";
 import AdminContext from "../store/context/AdminContext";
 import { RoomActions } from "../store/reducers/AdminReducer";
-import SocketActions from "../store/actions/SocketActions";
+import SocketActions from "../../../SocketActions";
 
 // Display a message when there are no players in the lobby.
 const NoPlayersContent = () => {
