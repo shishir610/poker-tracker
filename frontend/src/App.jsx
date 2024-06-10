@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RoomProvider from "./store/providers/RoomProvider";
 import RoomPage from "./pages/Room/RoomPage";
-import SocketActions from "../../SocketActions";
+import SocketActions from "../../SocketActions.mjs";
 
 function App() {
 	// Connects on the first render and disconnects on unmount.

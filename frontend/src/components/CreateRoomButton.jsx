@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { socket } from "../services/socket";
 import { Button } from "@/components/ui/button";
-import { RoomActions } from "../store/reducers/RoomReducer";
-import { SocketActions } from "../services/socket";
+import RoomActions from "../store/actions/RoomActions";
+import SocketActions from "../../../SocketActions.mjs";
 import RoomContext from "../store/context/RoomContext";
 import useActorContext from "../store/hooks/useActorContext";
 
@@ -14,7 +14,7 @@ export default function CreateRoomButton() {
 
 	// Create Room Event. Call the dispatch function with the CREATE_ROOM action type and the roomId as payload.
 	const createRoomEvent = (roomId) => {
-		console.log(roomId);
+		console.log("Created Room ID: " + roomId);
 		dispatch({
 			type: RoomActions.CREATE_ROOM,
 			payload: {

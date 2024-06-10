@@ -6,8 +6,8 @@ import LinkToCopy from "./ui/LinkToCopy";
 import { socket } from "../services/socket";
 import PropTypes from "prop-types";
 import AdminContext from "../store/context/AdminContext";
-import { RoomActions } from "../store/reducers/AdminReducer";
-import SocketActions from "../../../SocketActions";
+import SocketActions from "../../../SocketActions.mjs";
+import AdminActions from "../store/actions/AdminActions";
 
 // Display a message when there are no players in the lobby.
 const NoPlayersContent = () => {
@@ -47,7 +47,7 @@ export default function PlayersSidebar() {
 
 	const addPlayerEvent = (player) => {
 		dispatch({
-			type: RoomActions.ADD_PLAYER,
+			type: AdminActions.ADD_PLAYER,
 			payload: player,
 		});
 	};
